@@ -1,0 +1,419 @@
+/* ==========================================================================
+   1. БАЗОВІ СТИЛІ ТА ШРИФТИ
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    scroll-behavior: smooth;
+}
+
+/* ==========================================================================
+   2. ШАПКА САЙТУ (НАВІГАЦІЯ)
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 30px;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    text-transform: lowercase;
+}
+
+.navbar nav a {
+    font-family: 'Cormorant Garamond', serif;
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 13px;
+    text-transform: lowercase;
+    letter-spacing: 0.5px;
+    opacity: 0.7;
+    transition: 0.2s ease;
+}
+
+.navbar nav a:hover {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   3. ПЕРША СЕКЦІЯ (HERO)
+   ========================================================================== */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    background-image: url('bg.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 60px;
+    letter-spacing: 5px;
+    line-height: 1.2;
+    font-weight: 300;
+}
+
+.subtitle {
+    font-style: italic;
+    font-size: 24px;
+    margin: 20px 0 40px;
+    opacity: 0.9;
+}
+
+.btn-explore {
+    display: inline-block;
+    padding: 12px 35px;
+    border: 1px solid #fff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    transition: 0.4s;
+}
+
+.btn-explore:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* Хмаринки-роздільник */
+.clouds-divider {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: 10;
+}
+
+.clouds-divider svg {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 60px;
+}
+
+.clouds-divider path {
+    fill: #ffffff !important;
+}
+
+/* ==========================================================================
+   4. ДРУГА СЕКЦІЯ (ТОВАРИ ТА ПРЕМІУМ КАРТКИ ПОВЕРХ ФОТО)
+   ========================================================================== */
+.products-section {
+    padding: 100px 50px;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: 30px !important;
+    flex-wrap: wrap !important;
+    position: relative;
+    background-image: url('products-bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center 20%;
+    background-size: cover;
+}
+
+/* Исправленный псевдоэлемент затемнения фона секции */
+.products-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Абсолютно прозрачная карточка без серого хвоста снизу */
+.products-section .card {
+    position: relative;
+    z-index: 2;
+    width: 320px !important;
+    height: 490px !important; /* Оптимальная высота всей карточки */
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2) !important;
+    background: transparent !important; 
+    border: none !important;
+    backdrop-filter: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Галерея на всю высоту карты */
+.product-gallery {
+    position: relative;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+    margin-bottom: 0 !important;
+}
+
+.slides-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+/* Фотографии товара */
+.product-gallery img.slide {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.product-gallery img.slide.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Блок контента наложен прямо поверх нижней части фотографии */
+.card-content-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px 24px 24px 24px;
+    /* Элегантное премиальное затемнение для идеального чтения текста на фото */
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 65%, rgba(0,0,0,0) 100%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Текст карточки на фотографии */
+.products-section .card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    color: #fff !important;
+    font-size: 22px;
+    margin: 0 0 4px 0 !important;
+    text-transform: lowercase;
+    letter-spacing: 1px;
+    padding: 0 !important;
+}
+
+.products-section .card p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: #ccc !important;
+    margin: 0 0 12px 0 !important;
+    line-height: 1.4;
+    padding: 0 !important;
+}
+
+/* Новая цена товара поверх фото */
+.products-section .card .price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: #fff !important;
+    font-weight: bold;
+    margin: 0 0 16px 0 !important;
+    letter-spacing: 1px;
+    display: block;
+}
+
+/* Кнопка "Купить" поверх фотографии */
+.products-section .card .btn-buy {
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 11px 0 !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid #fff !important;
+    color: #fff !important;
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: lowercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.25s ease !important;
+    backdrop-filter: blur(5px);
+    box-sizing: border-box;
+}
+
+.products-section .card .btn-buy:hover {
+    background: #fff !important;
+    color: #000 !important;
+}
+
+/* Премиальные аккуратные стрелочки, поднятые чуть выше текста */
+.slider-btn {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    width: 36px !important;
+    height: 36px !important;
+    cursor: pointer;
+    font-size: 12px;
+    z-index: 5;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(3px);
+}
+
+.slider-btn:hover {
+    background: #fff !important;
+    color: #000 !important;
+}
+.slider-btn.prev { left: 15px !important; }
+.slider-btn.next { right: 15px !important; }
+
+/* ==========================================================================
+   5. ТРЕТЯ СЕКЦІЯ (ІНФО ТА КОНТАКТИ)
+   ========================================================================== */
+.info-section {
+    padding: 100px 50px;
+    display: flex;
+    justify-content: space-around;
+    background: #000;
+    border-top: 1px solid #222;
+}
+
+.about-info, .contacts-info {
+    max-width: 400px;
+}
+
+.info-section h2 {
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.info-section p {
+    color: #aaa;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+/* ==========================================================================
+   6. МОДАЛЬНЕ ВІКНО ТА ЛАЙТБОКС
+   ========================================================================== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #111;
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    border: 1px solid #333;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+#orderForm input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: #222;
+    border: 1px solid #444;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    background: #fff;
+    color: #000;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background: #ccc;
+}
+
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+}
+.lightboxImg {
+    max-width: 90%;
+    max-height: 80vh;
+    object-fit: contain;
+}

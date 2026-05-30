@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silk_Lace_and | Елегантний домашній одяг</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Навігація -->
+    <header class="navbar">
+        <div class="logo">Silk_Lace_and</div>
+        <nav>
+            <a href="#home">Головна</a>
+            <a href="#products">Товари</a>
+            <a href="#about">Про нас</a>
+            <a href="#contacts">Контакти</a>
+        </nav>
+    </header>
+
+    <!-- Секція 1: Головна -->
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Silk_Lace_and</h1>
+            <p class="subtitle">Стильні нічні сорочки та халати</p>
+            <a href="#products" class="btn-explore">EXPLORE</a>
+        </div>
+        <div class="clouds-divider">
+            <svg xmlns="http://w3.org" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#ffffff" fill-opacity="1" d="M0,32L60,42.7C120,53,240,75,360,74.7C480,75,600,53,720,48C840,43,960,53,1080,53.3C1200,53,1320,43,1380,37.3L1440,32L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Секція 2: Товари -->
+    <section id="products" class="products-section">
+        
+        <!-- Картка 1 -->
+        <div class="card">
+            <div class="product-gallery" data-product="1">
+                <div class="slides-container">
+                    <img src="prod1-photo1.jpg" class="slide active" alt="Товар 1 - Фото 1" onclick="openLightbox(this)">
+                    <img src="prod1-photo2.jpg" class="slide" alt="Товар 1 - Фото 2" onclick="openLightbox(this)">
+                    <img src="prod1-photo3.jpg" class="slide" alt="Товар 1 - Фото 3" onclick="openLightbox(this)">
+                    <img src="first3.jpg" class="slide" alt="Товар 1 - Фото 4" onclick="openLightbox(this)">
+                    <img src="first2.jpg" class="slide" alt="Товар 1 - Фото 5" onclick="openLightbox(this)">
+                    <img src="first.jpg" class="slide" alt="Товар 1 - Фото 6" onclick="openLightbox(this)">
+                </div>
+                <button class="slider-btn prev" onclick="changeSlide(this, -1)">❮</button>
+                <button class="slider-btn next" onclick="changeSlide(this, 1)">❯</button>
+                
+                <div class="card-content-overlay">
+                    <h3>Шовковий комплект нічна сорочка з халатом</h3>
+                    <p>Артикул: Кч928н | Матеріал: Штучний шовк | Склад: 20% шовк, 20% віскоза, 60% поліестер | Колір: Чорний | Розміри: 42-60</p>
+                    <span class="price">1830грн</span>
+                   <button class="btn-buy" onclick="openModal(this)">Купить</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Картка 2 -->
+        <div class="card">
+            <div class="product-gallery" data-product="2">
+                <div class="slides-container">
+                    <img src="too1.jpg" class="slide active" alt="Товар 2 - Фото 1" onclick="openLightbox(this)">
+                    <img src="too2.jpg" class="slide" alt="Товар 2 - Фото 2" onclick="openLightbox(this)">
+                    <img src="too3.jpg" class="slide" alt="Товар 2 - Фото 3" onclick="openLightbox(this)">
+                    <img src="too4.jpg" class="slide" alt="Товар 2 - Фото 4" onclick="openLightbox(this)">
+                    <img src="too5.jpg" class="slide" alt="Товар 2 - Фото 5" onclick="openLightbox(this)">
+                    <img src="too6.jpg" class="slide" alt="Товар 2 - Фото 6" onclick="openLightbox(this)">
+                </div>
+                <button class="slider-btn prev" onclick="changeSlide(this, -1)">❮</button>
+                <button class="slider-btn next" onclick="changeSlide(this, 1)">❯</button>
+                
+                <div class="card-content-overlay">
+                    <h3>Нічна сорочка трикотажна з мереживом</h3>
+                    <p>Артикул: Нк1111 | Матеріал: Бавовна | Склад: 95% бавовна, 5% еластан | Колір: Коралово-рожевий | Розміри: XS - 2XL</p>
+                    <span class="price">750грн</span>
+                    <button class="btn-buy" onclick="openModal(this)">Купить</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Картка 3 -->
+        <div class="card">
+            <div class="product-gallery" data-product="3">
+                <div class="slides-container">
+                    <img src="three1.jpg" class="slide active" alt="Товар 3 - Фото 1" onclick="openLightbox(this)">
+                    <img src="three2.jpg" class="slide" alt="Товар 3 - Фото 2" onclick="openLightbox(this)">
+                    <img src="three3.jpg" class="slide" alt="Товар 3 - Фото 3" onclick="openLightbox(this)">
+                    <img src="three4.jpg" class="slide" alt="Товар 3 - Фото 4" onclick="openLightbox(this)">
+                    <img src="three5.jpg" class="slide" alt="Товар 3 - Фото 5" onclick="openLightbox(this)">
+                </div>
+                <button class="slider-btn prev" onclick="changeSlide(this, -1)">❮</button>
+                <button class="slider-btn next" onclick="changeSlide(this, 1)">❯</button>
+                
+                <div class="card-content-overlay">
+                    <h3>Шовкова піжама принтована з шортами</h3>
+                    <p>Артикул: П499 | Матеріал: Штучний шовк | Склад: 20% шовк, 20% віскоза, 60% поліестер | Колір: Бежевий | Розміри: 42-68</p>
+                    <span class="price">1300грн</span>
+                   <button class="btn-buy" onclick="openModal(this)">Купить</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Картка 4 -->
+        <div class="card">
+            <div class="product-gallery" data-product="4">
+                <div class="slides-container">
+                    <img src="fo1.jpg" class="slide active" alt="Товар 4 - Фото 1" onclick="openLightbox(this)">
+                    <img src="fo2.jpg" class="slide" alt="Товар 4 - Фото 2" onclick="openLightbox(this)">
+                    <img src="fo3.jpg" class="slide" alt="Товар 4 - Фото 3" onclick="openLightbox(this)">
+                    <img src="fo4.jpg" class="slide" alt="Товар 4 - Фото 4" onclick="openLightbox(this)">
+                    <img src="fo5.jpg" class="slide" alt="Товар 4 - Фото 5" onclick="openLightbox(this)">
+                    <img src="fo6.jpg" class="slide" alt="Товар 4 - Фото 6" onclick="openLightbox(this)">
+                </div>
+                <button class="slider-btn prev" onclick="changeSlide(this, -1)">❮</button>
+                <button class="slider-btn next" onclick="changeSlide(this, 1)">❯</button>
+                
+                <div class="card-content-overlay">
+                    <h3>Жіночий халат міді з рукавом кімоно</h3>
+                    <p>Артикул: Хб399 | Матеріал: Штучний шовк | Склад: 100% поліестер | Колір: Бежевий | Довжина: 125 см | Розміри: 42-68</p>
+                    <span class="price">1600грн</span>
+                    <button class="btn-buy" onclick="openModal(this)">Купить</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Секція 3: Про нас та контакти -->
+    <section id="about" class="info-section">
+        <div class="about-info">
+            <h2>Про нас</h2>
+            <p>Ласкаво просимо у світ, де домашній одяг стає мовою любові до себе. Бренд Silk_Lace_and створює стильні нічні сорочки та халати, які поєднують у собі абсолютний комфорт і витончену естетику. Ми віримо, що час, проведений удома, — особливий. Тому кожен наш виріб створений для того, щоб ви почувалися впевнено, привабливо та затишно з першої хвилини ранку і до пізнього вечора. Обирайте свій ідеальний образ для красивих домашніх ритуалів.</p>
+        </div>
+        <div id="contacts" class="contacts-info">
+            <h2>Контакти</h2>
+            <p>Телефон: +38 (096) 511-67-74</p>
+            <p>Email: mickrogreen@gmail.com</p>
+        </div>
+    </section>
+
+  <!-- Модальне вікно замовлення -->
+<div id="orderModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>Оформлення замовлення</h2>
+        
+        <!-- ІСПРАВЛЕНО: Правильний action URL серверов Web3Forms -->
+        <form id="orderForm" action="https://web3forms.com" method="POST" onsubmit="handleFormSubmit()">
+
+            <!-- Секретний ключ -->
+            <input type="hidden" name="access_key" value="d002a220-0d04-414d-842f-eb1abf51b2e6">
+            <input type="hidden" name="subject" value="Нове замовлення Silk_Lace_and">
+            <input type="hidden" name="from_name" value="Магазин Silk_Lace_and">
+            
+            <!-- Автоматичне поле для назви товару -->
+            <input type="hidden" id="productNameInput" name="Замовлений товар" value="Не вказано">
+
+            <!-- Дані покупця -->
+            <input type="text" name="Ім'я" placeholder="Ім'я" required>
+            <input type="text" name="Прізвище" placeholder="Прізвище" required>
+            <input type="tel" name="Телефон" placeholder="Номер телефону" required>
+            <input type="text" name="Місто" placeholder="Місто" required>
+            <input type="text" name="Відділення Нової Пошти" placeholder="Відділення Нової Пошти" required>
+
+            <button type="submit" class="btn-submit">Підтвердити замовлення</button>
+        </form>
+    </div>
+</div>
+
+<!-- Лайтбокс -->
+<div id="lightboxModal" class="lightbox" style="display: none;">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <button class="lightbox-btn lightbox-prev" onclick="lightboxNavigate(-1)">❮</button>
+    <div class="lightbox-content-wrapper">
+        <img id="lightboxImg" src="" alt="Збільшене фото">
+    </div>
+    <button class="lightbox-btn lightbox-next" onclick="lightboxNavigate(1)">❯</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
+
