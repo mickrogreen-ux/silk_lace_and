@@ -66,6 +66,17 @@ function changeSlide(button, direction) {
 
     slides[newIndex].classList.add('active');
 }
+// Автоматичне фокусування на секції товарів при відкритті сайту
+document.addEventListener("DOMContentLoaded", function() {
+    var productsSection = document.getElementById("products");
+    if (productsSection) {
+        // Плавно прокручуємо екран до товарів через 300 мілісекунд після завантаження
+        setTimeout(function() {
+            productsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 300);
+    }
+});
+
 
 
 
