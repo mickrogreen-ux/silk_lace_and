@@ -43,40 +43,16 @@ function handleFormSubmit() {
 }
 
 // 5. Функция слайдера картинок (листалка)
-function changeSlide(button, direction) {
-    var gallery = button.closest('.product-gallery');
-    if (!gallery) return;
-
-    var slides = gallery.querySelectorAll('img.slide');
-    if (slides.length <= 1) return; 
-
-    var activeIndex = Array.from(slides).findIndex(function(slide) {
-        return slide.classList.contains('active');
-    });
-    if (activeIndex === -1) activeIndex = 0;
-
-    slides[activeIndex].classList.remove('active');
-
-    var newIndex = activeIndex + direction;
-    if (newIndex >= slides.length) {
-        newIndex = 0;
-    } else if (newIndex < 0) {
-        newIndex = slides.length - 1;
-    }
-
-    slides[newIndex].classList.add('active');
-}
-// Автоматичне фокусування на секції товарів при відкритті сайту
+// Автоматичне фокусування на секції товарів через 2 секунди
 document.addEventListener("DOMContentLoaded", function() {
     var productsSection = document.getElementById("products");
     if (productsSection) {
-        // Плавно прокручуємо екран до товарів через 300 мілісекунд після завантаження
+        // Затримка 2000 мілісекунд (рівно 2 секунди) перед плавною прокруткою
         setTimeout(function() {
             productsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 300);
+        }, 2000);
     }
 });
-
 
 
 
