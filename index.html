@@ -145,15 +145,15 @@
     </section>
 
   <!-- Модальне вікно замовлення -->
+<!-- Модальне вікно замовлення -->
 <div id="orderModal" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal()">&times;</span>
         <h2>Оформлення замовлення</h2>
         
-        <!-- ІСПРАВЛЕНО: Правильний action URL серверов Web3Forms -->
-        <form id="orderForm" action="https://web3forms.com" method="POST" onsubmit="handleFormSubmit()">
-
-            <!-- Секретний ключ -->
+        <!-- ІСПРАВЛЕНО: Прибрали action та method, щоб уникнути помилки 405 на GitHub -->
+        <form id="orderForm">
+            <!-- Секретний ключ Web3Forms -->
             <input type="hidden" name="access_key" value="d002a220-0d04-414d-842f-eb1abf51b2e6">
             <input type="hidden" name="subject" value="Нове замовлення Silk_Lace_and">
             <input type="hidden" name="from_name" value="Магазин Silk_Lace_and">
@@ -172,6 +172,7 @@
         </form>
     </div>
 </div>
+
 
 <!-- Лайтбокс -->
 <div id="lightboxModal" class="lightbox" style="display: none;">
