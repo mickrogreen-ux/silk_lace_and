@@ -417,3 +417,100 @@ body {
     max-height: 80vh;
     object-fit: contain;
 }
+/* ==========================================================================
+   АДАПТАЦІЯ ДЛЯ МОБІЛЬНИХ ПРИСТРОЇВ (Екрани менше 768px)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Навігація */
+    .navbar {
+        padding: 15px;
+        flex-direction: column; /* Логотип і меню стають один під одним */
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .navbar nav {
+        gap: 15px; /* Зменшуємо відстань між посиланнями */
+    }
+
+    /* 2. Головний екран (Hero) */
+    .hero-content h1 {
+        font-size: 2.5rem; /* Зменшуємо розмір великого шрифту */
+    }
+    
+    .hero-content .subtitle {
+        font-size: 1.2rem;
+    }
+
+    /* 3. Секція товарів та картки */
+    .products-section {
+        grid-template-columns: 1fr; /* Товари шикуються в один стовпчик */
+        padding: 15px;
+        gap: 25px;
+    }
+
+    .card {
+        width: 100%; /* Картка займає всю ширину екрану смартфона */
+        max-width: 400px; /* Обмежуємо, щоб не розтягувалася занадто сильно */
+        margin: 0 auto;
+    }
+
+    /* 4. Контент поверх фото в картці */
+    .card-content-overlay {
+        padding: 15px;
+    }
+
+    .card-content-overlay h3 {
+        font-size: 1.3rem; /* Зменшуємо заголовки піжам та халатів */
+        line-height: 1.3;
+    }
+
+    .card-content-overlay p {
+        font-size: 0.9rem; /* Робимо опис дрібнішим, щоб помістився на екрані */
+        margin-bottom: 10px;
+    }
+
+    /* 5. Кнопки гортання слайдера (робимо трохи більшими для пальців) */
+    .slider-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    /* 6. Модальне вікно (Форма замовлення) */
+    .modal-content {
+        width: 90%; /* Форма займає майже всю ширину екрану */
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .modal-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    /* Збільшуємо поля форми, щоб по ним було зручно клікати пальцем */
+    #orderForm input {
+        padding: 12px;
+        font-size: 1rem;
+        margin-bottom: 12px;
+    }
+
+    .btn-submit {
+        padding: 14px;
+        font-size: 1.1rem;
+    }
+
+    /* 7. Секція "Про нас" та контакти */
+    .info-section {
+        flex-direction: column; /* Текст про нас і контакти стають один під одним */
+        padding: 30px 15px;
+        gap: 30px;
+    }
+
+    .about-info, .contacts-info {
+        width: 100%;
+        text-align: center; /* Центруємо текст для краси на мобільних */
+    }
+}
