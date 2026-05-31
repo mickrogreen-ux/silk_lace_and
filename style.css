@@ -108,12 +108,15 @@ body {
     font-size: 12px;
     letter-spacing: 2px;
     transition: 0.4s;
+    /* Опускаємо кнопку нижче від тексту */
+    margin-top: 80px; 
 }
 
 .btn-explore:hover {
     background: #fff;
     color: #000;
 }
+
 
 /* Хмаринки-роздільник */
 .clouds-divider {
