@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var formData = new FormData(form);
 
             // Відправляємо дані як чистий фоновий JSON-запит
-            fetch("https://web3forms.com", {
+            fetch("https://api.web3forms.com/submit", {
                 method: "POST",
                 body: formData
             })
