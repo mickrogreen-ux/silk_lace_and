@@ -1,6 +1,15 @@
 /* ==========================================================================
-   1. БАЗОВІ СТИЛІ ТА ШРИФТИ
+   1. БАЗОВІ СТИЛІ ТА ШРИФТИ (ЗАХИСТ ВІД ПЛАВАННЯ)
    ========================================================================== */
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden; /* Забороняє будь-яке ковзання вбік */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -12,9 +21,6 @@ body {
     background-color: #000;
     color: #fff;
     scroll-behavior: smooth;
-    /* Суворе блокування будь-якого плавання сторінки вбік */
-    overflow-x: hidden; 
-    width: 100%;
 }
 
 img {
@@ -45,6 +51,12 @@ img {
     letter-spacing: 1px;
     font-weight: 400;
     text-transform: lowercase;
+    white-space: nowrap;
+}
+
+.navbar nav {
+    display: flex;
+    align-items: center;
 }
 
 .navbar nav a {
@@ -57,6 +69,7 @@ img {
     letter-spacing: 0.5px;
     opacity: 0.7;
     transition: 0.2s ease;
+    white-space: nowrap;
 }
 
 .navbar nav a:hover {
@@ -148,7 +161,7 @@ img {
 }
 
 /* ==========================================================================
-   4. ДРУГА СЕКЦІЯ (ТОВАРИ) — ПРИБРАНО ЗГУБНІ !IMPORTANT ДЛЯ ПК
+   4. ДРУГА СЕКЦІЯ (ТОВАРИ)
    ========================================================================== */
 .products-section {
     padding: 100px 50px;
@@ -312,9 +325,8 @@ img {
 }
 .slider-btn.prev { left: 15px; }
 .slider-btn.next { right: 15px; }
-
 /* ==========================================================================
-   5. ТРЕТЯ СЕКЦІЯ (ІНФО ТА КОНТАКТИ)
+   5. ТРЕТЯ СЕКЦІЯ (ІНФО ТА КОНТАКТИ / ФУТЕР)
    ========================================================================== */
 .info-section {
     display: flex;
@@ -451,19 +463,82 @@ img {
    ========================================================================== */
 @media (max-width: 768px) {
 
-    /* Шапка сайту */
+    /* Фікс меню: назви не будуть налізати і обрізатися до стану "кон" */
     .navbar {
-        padding: 10px 15px !important;
+        padding: 12px 15px !important;
+        flex-direction: row !important;
     }
-    .navbar nav a {
-        margin-left: 10px !important;
-        font-size: 11px !important;
+    
+    .logo {
+        font-size: 13px !important;
     }
 
-    /* 1. Головне фото: примусово стискаємо та фіксуємо */
+    .navbar nav a {
+        margin-left: 10px !important;
+        font-size: 11px !important; /* Трохи компактніший шрифт для мобільних */
+    }
+
+    /* Головне фото */
     .hero-section {
         height: 60vh !important; 
         background-position: center center !important;
+        background-size: cover !important;
     }
 
+    /* Фікс SVG-хвилі */
+    .clouds-divider svg {
+        width: 100% !important;
+        height: 35px !important;
+    }
+
+    .hero-content h1 {
+        font-size: 32px !important;
+    }
+
+    .subtitle {
+        font-size: 16px !important;
+        margin: 15px 0 20px !important;
+    }
+
+    .btn-explore {
+        margin-top: 30px !important;
+        padding: 10px 25px !important;
+    }
+
+    /* Секція товарів */
+    .products-section {
+        padding: 40px 10px !important;
+    }
+
+    /* Картки товарів плавно зменшуються */
+    .products-section .card {
+        width: 100% !important; 
+        max-width: 290px !important; 
+        height: 440px !important; 
+        margin: 0 auto 20px auto !important;
+    }
+
+    .products-section .card h3 {
+        font-size: 18px !important;
+    }
+    
+    .products-section .card p {
+        font-size: 11px !important;
+    }
+
+    /* Секція "Про нас та контакти" (Футер) вирівнюється в стовпчик */
+    .info-section {
+        display: flex !important;
+        flex-direction: column !important; 
+        gap: 30px !important;
+        padding: 40px 20px !important;
+        text-align: center !important;
+    }
+
+    .about-info, .contacts-info {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        flex: none !important;
+    }
 }
