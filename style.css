@@ -442,4 +442,36 @@ body {
     background-position: right 10px center;
     background-size: 15px;
 }
+/* Основні стилі для великих екранів (комп'ютерів) */
+.info-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-info {
+    flex: 2; /* Блок "Про нас" буде ширшим */
+}
+
+.contacts-info {
+    flex: 1; /* Блок "Контакти" буде вужчим */
+    min-width: 250px;
+}
+
+/* Адаптація під мобільні телефони (екрани менше 768px) */
+@media (max-width: 768px) {
+    .info-section {
+        flex-direction: column; /* Блоки стають один під одного */
+        gap: 30px; /* Зменшуємо відстань між блоками */
+        padding: 40px 15px; /* Зменшуємо внутрішні відступи */
+        text-align: center; /* (Опціонально) Вирівнювання тексту по центру для мобільних */
+    }
+
+    .about-info, .contacts-info {
+        width: 100%; /* Блоки займають всю ширину екрану */
+    }
+}
 
