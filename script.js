@@ -1,4 +1,30 @@
-// 1. Відкриття модального вікна та збір імені товару
+// 1. Словник товарів та їхніх розмірів (змініть під свої товари)
+const productSizes = {
+    "Шовкова піжама": ["XS", "S", "M", "L"],
+    "Мереживний халат": ["S/M", "L/XL"],
+    "Трусики Silk": ["S", "M", "L"],
+    "Не вказано": ["Універсальний"] // Варіант за замовчуванням
+};
+
+// Функція оновлення випадаючого списку розмірів
+function updateSizes(productName) {
+    const sizeSelect = document.getElementById("sizeSelect");
+    if (!sizeSelect) return;
+
+    sizeSelect.innerHTML = '<option value="" disabled selected>Оберіть розмір</option>';
+
+    // Беремо розміри для товару або стандартний набір, якщо товару немає в списку
+    const sizes = productSizes[productName] || ["XS", "S", "M", "L", "XL"];
+
+    sizes.forEach(size => {
+        const option = document.createElement("option");
+        option.value = size;
+        option.textContent = size;
+        sizeSelect.appendChild(option);
+    });
+}
+
+// 2. Відкриття модального вікна та збір імені товару
 function openModal(button) {
     try {
         if (button && button.closest) {
@@ -7,7 +33,11 @@ function openModal(button) {
                 var h3 = card.querySelector('h3');
                 var input = document.getElementById('productNameInput');
                 if (h3 && input) {
-                    input.value = h3.innerText;
+                    var currentProductName = h3.innerText.trim();
+                    input.value = currentProductName;
+                    
+                    // Одразу оновлюємо розміри під конкретний товар при відкритті
+                    updateSizes(currentProductName);
                 }
             }
         }
@@ -21,7 +51,7 @@ function openModal(button) {
     }
 }
 
-// 2. Закриття модального вікна
+// 3. Закриття модального вікна
 function closeModal() {
     var modal = document.getElementById("orderModal");
     if (modal) {
@@ -29,7 +59,7 @@ function closeModal() {
     }
 }
 
-// 3. Закриття при кліку на темне тло навколо форми
+// 4. Закриття при кліку на темне тло навколо форми
 window.onclick = function(event) {
     var modal = document.getElementById("orderModal");
     if (event.target == modal) {
@@ -37,17 +67,16 @@ window.onclick = function(event) {
     }
 };
 
-// 4. Безпечне фонове відправлення через Fetch API (Рятує від помилки 405)
+// 5. Безпечне фонове відправлення через Fetch API та ініціалізація
 document.addEventListener("DOMContentLoaded", function() {
     var form = document.getElementById("orderForm");
     
     if (form) {
         form.addEventListener("submit", function(event) {
-            event.preventDefault(); // Повністю блокуємо перезавантаження та помилку 405
+            event.preventDefault(); // Блокуємо перезавантаження сторінки
 
             var formData = new FormData(form);
 
-            // Відправляємо дані як чистий фоновий JSON-запит
             fetch("https://api.web3forms.com/submit", {
                 method: "POST",
                 body: formData
@@ -57,6 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     alert("Дякуємо! Ваше замовлення успішно прийнято.");
                     closeModal();
                     form.reset(); // Очищуємо поля форми
+                    updateSizes("Не вказано"); // Скидаємо розміри
                 } else {
                     alert("Сервер Web3Forms відхилив запит. Перевірте статус ключа.");
                 }
@@ -68,6 +98,9 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    // Первинне налаштування розмірів за замовчуванням
+    updateSizes("Не вказано");
+
     // --- Автоматичний перехід до товарів через 2 секунди ---
     var productsSection = document.getElementById("products");
     if (productsSection) {
@@ -77,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// 5. Функція слайдера картинок (горталка)
+// 6. Функція слайдера картинок (горталка)
 function changeSlide(button, direction) {
     var gallery = button.closest('.product-gallery');
     if (!gallery) return;
@@ -101,6 +134,5 @@ function changeSlide(button, direction) {
 
     slides[newIndex].classList.add('active');
 }
-
 
 
