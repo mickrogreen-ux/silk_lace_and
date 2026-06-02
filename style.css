@@ -474,4 +474,10 @@ body {
         width: 100%; /* Блоки займають всю ширину екрану */
     }
 }
+.hero-section { /* Замініть .hero-section на клас вашого головного блоку */
+    background-image: url('your-photo.jpg');
+    background-position: center center; /* Центрує фото */
+    background-repeat: no-repeat; /* Забороняє повторення картинки */
+    background-size: cover; /* Повністю закриває блок, акуратно обрізаючи краї */
+}
 
