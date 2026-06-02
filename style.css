@@ -12,7 +12,8 @@ body {
     background-color: #000;
     color: #fff;
     scroll-behavior: smooth;
-    overflow-x: hidden; /* Забороняє появу горизонтальної прокрутки */
+    /* Суворе блокування будь-якого плавання сторінки вбік */
+    overflow-x: hidden; 
     width: 100%;
 }
 
@@ -76,7 +77,6 @@ img {
     justify-content: center;
     align-items: center;
     text-align: center;
-    overflow: hidden; /* Не дає SVG ламати екран */
 }
 
 .hero-overlay {
@@ -148,15 +148,15 @@ img {
 }
 
 /* ==========================================================================
-   4. ДРУГА СЕКЦІЯ (ТОВАРИ)
+   4. ДРУГА СЕКЦІЯ (ТОВАРИ) — ПРИБРАНО ЗГУБНІ !IMPORTANT ДЛЯ ПК
    ========================================================================== */
 .products-section {
     padding: 100px 50px;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: flex-start !important;
-    gap: 30px !important;
-    flex-wrap: wrap !important;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    flex-wrap: wrap;
     position: relative;
     background-image: url('products-bg.jpg');
     background-repeat: no-repeat;
@@ -178,23 +178,23 @@ img {
 .products-section .card {
     position: relative;
     z-index: 2;
-    width: 320px !important;
-    height: 490px !important; 
-    border-radius: 12px !important;
-    overflow: hidden !important;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2) !important;
-    background: transparent !important; 
-    border: none !important;
-    display: flex !important;
-    flex-direction: column !important;
+    width: 320px;
+    height: 490px; 
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+    background: transparent; 
+    border: none;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-gallery {
     position: relative;
-    width: 100% !important;
-    height: 100% !important;
-    overflow: hidden !important;
-    margin-bottom: 0 !important;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin-bottom: 0;
 }
 
 .slides-container {
@@ -205,10 +205,10 @@ img {
 }
 
 .product-gallery img.slide {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    position: absolute !important;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
     top: 0;
     left: 0;
     opacity: 0;
@@ -217,8 +217,8 @@ img {
 }
 
 .product-gallery img.slide.active {
-    opacity: 1 !important;
-    visibility: visible !important;
+    opacity: 1;
+    visibility: visible;
 }
 
 .card-content-overlay {
@@ -237,84 +237,84 @@ img {
 
 .products-section .card h3 {
     font-family: 'Cormorant Garamond', serif;
-    color: #fff !important;
+    color: #fff;
     font-size: 22px;
-    margin: 0 0 4px 0 !important;
+    margin: 0 0 4px 0;
     text-transform: lowercase;
     letter-spacing: 1px;
-    padding: 0 !important;
+    padding: 0;
 }
 
 .products-section .card p {
     font-family: 'Cormorant Garamond', serif;
     font-size: 13px;
-    color: #ccc !important;
-    margin: 0 0 12px 0 !important;
+    color: #ccc;
+    margin: 0 0 12px 0;
     line-height: 1.4;
-    padding: 0 !important;
+    padding: 0;
 }
 
 .products-section .card .price {
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
-    color: #fff !important;
+    color: #fff;
     font-weight: bold;
-    margin: 0 0 16px 0 !important;
+    margin: 0 0 16px 0;
     letter-spacing: 1px;
     display: block;
 }
 
 .products-section .card .btn-buy {
-    width: 100% !important;
-    margin: 0 auto !important;
-    padding: 11px 0 !important;
-    background: rgba(255, 255, 255, 0.12) !important;
-    border: 1px solid #fff !important;
-    color: #fff !important;
+    width: 100%;
+    margin: 0 auto;
+    padding: 11px 0;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid #fff;
+    color: #fff;
     font-family: 'Cormorant Garamond', serif;
     text-transform: lowercase;
     font-size: 14px;
     letter-spacing: 1px;
     cursor: pointer;
-    transition: all 0.25s ease !important;
+    transition: all 0.25s ease;
     backdrop-filter: blur(5px);
     box-sizing: border-box;
 }
 
 .products-section .card .btn-buy:hover {
-    background: #fff !important;
-    color: #000 !important;
+    background: #fff;
+    color: #000;
 }
 
 .slider-btn {
     position: absolute;
     top: 40%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.2) !important;
-    color: #fff !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    width: 36px !important;
-    height: 36px !important;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 36px;
+    height: 36px;
     cursor: pointer;
     font-size: 12px;
     z-index: 5;
-    border-radius: 50% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.2s ease;
     backdrop-filter: blur(3px);
 }
 
 .slider-btn:hover {
-    background: #fff !important;
-    color: #000 !important;
+    background: #fff;
+    color: #000;
 }
-.slider-btn.prev { left: 15px !important; }
-.slider-btn.next { right: 15px !important; }
+.slider-btn.prev { left: 15px; }
+.slider-btn.next { right: 15px; }
 
 /* ==========================================================================
-   5. ТРЕТЯ СЕКЦІЯ (ІНФО ТА КОНТАКТИ / ФУТЕР)
+   5. ТРЕТЯ СЕКЦІЯ (ІНФО ТА КОНТАКТИ)
    ========================================================================== */
 .info-section {
     display: flex;
@@ -426,16 +426,16 @@ img {
 }
 
 #sizeSelect {
-    background-color: #ffffff !important; 
-    color: #000000 !important;            
+    background-color: #ffffff; 
+    color: #000000;            
     -webkit-appearance: none;             
     -moz-appearance: none;                
     appearance: none;                     
 }
 
 #sizeSelect option {
-    background-color: #ffffff !important; 
-    color: #000000 !important;            
+    background-color: #ffffff; 
+    color: #000000;            
 }
 
 #sizeSelect {
@@ -443,7 +443,27 @@ img {
     background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://w3.org' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 10px center;
+    background-size: 15px;
 }
 
+/* ==========================================================================
+   7. НАДІЙНА МОБІЛЬНА АДАПТАЦІЯ (ДЛЯ ЕКРАНІВ МЕНШЕ 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
 
+    /* Шапка сайту */
+    .navbar {
+        padding: 10px 15px !important;
+    }
+    .navbar nav a {
+        margin-left: 10px !important;
+        font-size: 11px !important;
+    }
 
+    /* 1. Головне фото: примусово стискаємо та фіксуємо */
+    .hero-section {
+        height: 60vh !important; 
+        background-position: center center !important;
+    }
+
+}
