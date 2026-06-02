@@ -12,9 +12,11 @@ body {
     background-color: #000;
     color: #fff;
     scroll-behavior: smooth;
+    /* Жорстке блокування будь-якого плавання сторінки вбік: */
+    overflow-x: hidden; 
+    width: 100%;
 }
 
-/* Универсальный адаптив для тегов картинок */
 img {
     max-width: 100%;
     height: auto;
@@ -89,6 +91,7 @@ img {
 .hero-content {
     position: relative;
     z-index: 2;
+    padding: 0 20px;
 }
 
 .hero-content h1 {
@@ -123,7 +126,6 @@ img {
     color: #000;
 }
 
-/* Хмаринки-роздільник */
 .clouds-divider {
     position: absolute;
     bottom: -1px;
@@ -146,7 +148,7 @@ img {
 }
 
 /* ==========================================================================
-   4. ДРУГА СЕКЦІЯ (ТОВАРИ ТА ПРЕМІУМ КАРТКИ ПОВЕРХ ФОТО)
+   4. ДРУГА СЕКЦІЯ (ТОВАРИ) — Повністю ваші оригінальні розміри
    ========================================================================== */
 .products-section {
     padding: 100px 50px;
@@ -183,7 +185,6 @@ img {
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2) !important;
     background: transparent !important; 
     border: none !important;
-    backdrop-filter: none !important;
     display: flex !important;
     flex-direction: column !important;
 }
@@ -319,7 +320,7 @@ img {
     display: flex;
     justify-content: space-between;
     gap: 40px;
-    padding: 100px 50px;
+    padding: 60px 20px;
     max-width: 1200px;
     margin: 0 auto;
     background: #000;
@@ -442,8 +443,7 @@ img {
     background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://w3.org' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 10px center;
-    background-size: 15px;
-}
+
 
 
 
