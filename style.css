@@ -480,4 +480,11 @@ body {
     background-repeat: no-repeat; /* Забороняє повторення картинки */
     background-size: cover; /* Повністю закриває блок, акуратно обрізаючи краї */
 }
+/* Робить усі зображення на сайті адаптивними */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 
