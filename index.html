@@ -151,33 +151,31 @@
         <span class="close-btn" onclick="closeModal()">&times;</span>
         <h2>Оформлення замовлення</h2>
         
-<!-- ІСПРАВЛЕНО: Прибрали action та method, щоб уникнути помилки 405 на GitHub -->
-<form id="orderForm">
-    <!-- Секретний ключ Web3Forms -->
-    <input type="hidden" name="access_key" value="d002a220-0d04-414d-842f-eb1abf51b2e6">
-    <input type="hidden" name="subject" value="Нове замовлення Silk_Lace_and">
-    <input type="hidden" name="from_name" value="Магазин Silk_Lace_and">
-    
-    <!-- Автоматичне поле для назви товару -->
-    <input type="hidden" id="productNameInput" name="Замовлений товар" value="Не вказано">
+        <form id="orderForm">
+            <!-- Секретний ключ Web3Forms -->
+            <input type="hidden" name="access_key" value="d002a220-0d04-414d-842f-eb1abf51b2e6">
+            <input type="hidden" name="subject" value="Нове замовлення Silk_Lace_and">
+            <input type="hidden" name="from_name" value="Магазин Silk_Lace_and">
+            
+            <!-- Автоматичне поле для назви товару -->
+            <input type="hidden" id="productNameInput" name="Замовлений товар" value="Не вказано">
 
-    <!-- Дані покупця -->
-    <input type="text" name="first_name" placeholder="Ім'я" required>
-    <input type="text" name="last_name" placeholder="Прізвище" required>
-    <input type="tel" name="phone" placeholder="Номер телефону" required>
-    <input type="text" name="city" placeholder="Місто" required>
-    <input type="text" name="nova_poshta" placeholder="Відділення Нової Пошти" required>
+            <!-- Дані покупця -->
+            <input type="text" name="first_name" placeholder="Ім'я" required>
+            <input type="text" name="last_name" placeholder="Прізвище" required>
+            <input type="tel" name="phone" placeholder="Номер телефону" required>
+            <input type="text" name="city" placeholder="Місто" required>
+            <input type="text" name="nova_poshta" placeholder="Відділення Нової Пошти" required>
 
-    <!-- Нові поля: Розмір та Кількість -->
-    <select name="size" id="sizeSelect" required>
-        <option value="" disabled selected>Оберіть розмір</option>
-    </select>
+            <!-- Нові поля: Розмір та Кількість -->
+            <select name="size" id="sizeSelect" required>
+                <option value="" disabled selected>Оберіть розмір</option>
+            </select>
 
-    <input type="number" name="quantity" placeholder="Кількість (шт.)" min="1" value="1" required>
+            <input type="number" name="quantity" placeholder="Кількість (шт.)" min="1" value="1" required>
 
-    <button type="submit" class="btn-submit">Підтвердити замовлення</button>
-</form>
-
+            <button type="submit" class="btn-submit">Підтвердити замовлення</button>
+        </form>
     </div>
 </div>
 
@@ -192,84 +190,143 @@
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    // 1. Словник товарів та їхніх розмірів
-    const productSizes = {
-        "Шовкова піжама": ["XS", "S", "M", "L"],
-        "Мереживний халат": ["S/M", "L/XL"],
-        "Трусики Silk": ["S", "M", "L"],
-        "Не вказано": ["Універсальний"]
-    };
+// 1. Словник товарів та їхніх розмірів
+const productSizes = {
+    "Шовкова піжама": ["XS", "S", "M", "L"],
+    "Мереживний халат": ["S/M", "L/XL"],
+    "Трусики Silk": ["S", "M", "L"],
+    "Не вказано": ["Універсальний"]
+};
 
-    const form = document.getElementById("orderForm");
-    const productInput = document.getElementById("productNameInput");
+// Функція оновлення випадаючого списку розмірів
+function updateSizes(productName) {
     const sizeSelect = document.getElementById("sizeSelect");
+    if (!sizeSelect) return;
 
-    // 2. Функція, яка оновлює випадаючий список розмірів
-    function updateSizes() {
-        const productName = productInput.value;
-        
-        sizeSelect.innerHTML = '<option value="" disabled selected>Оберіть розмір</option>';
+    sizeSelect.innerHTML = '<option value="" disabled selected>Оберіть розмір</option>';
+    const sizes = productSizes[productName] || ["XS", "S", "M", "L", "XL"];
 
-        const sizes = productSizes[productName] || ["XS", "S", "M", "L", "XL"];
+    sizes.forEach(size => {
+        const option = document.createElement("option");
+        option.value = size;
+        option.textContent = size;
+        sizeSelect.appendChild(option);
+    });
+}
 
-        sizes.forEach(size => {
-            const option = document.createElement("option");
-            option.value = size;
-            option.textContent = size;
-            sizeSelect.appendChild(option);
+// 2. Функція ПРИМУСОВОГО відкриття модального вікна та збору назви товару
+function openModal(button) {
+    let detectedName = "Не вказано";
+
+    try {
+        if (button) {
+            // Шукаємо картку товару за класом або структурою
+            var card = button.closest('.product-gallery') || button.parentElement;
+            if (card) {
+                var h3 = card.querySelector('h3');
+                if (h3) {
+                    detectedName = h3.innerText.trim();
+                }
+            }
+        }
+    } catch (e) {
+        console.warn("Не вдалося зчитати назву товару:", e);
+    }
+
+    // Записуємо назву в приховане поле
+    var input = document.getElementById('productNameInput');
+    if (input) {
+        input.value = detectedName;
+    }
+
+    // Оновлюємо розміри під цей товар
+    updateSizes(detectedName);
+
+    // Відображаємо вікно
+    var modal = document.getElementById("orderModal");
+    if (modal) {
+        modal.style.display = "flex";
+    }
+}
+
+// 3. Функція закриття модального вікна
+function closeModal() {
+    var modal = document.getElementById("orderModal");
+    if (modal) {
+        modal.style.display = "none";
+    }
+}
+
+// 4. Закриття при кліку на темне тло
+window.onclick = function(event) {
+    var modal = document.getElementById("orderModal");
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
+
+// 5. Ініціалізація відправки форми та скролу
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("orderForm");
+
+    if (form) {
+        form.addEventListener("submit", function (e) {
+            e.preventDefault(); // Блокуємо перезавантаження сторінки
+
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            const submitButton = form.querySelector(".btn-submit");
+            submitButton.textContent = "Відправка...";
+            submitButton.disabled = true;
+
+            // ІСПРАВЛЕНО: Правильна URL-адреса для Web3Forms API
+            fetch("https://web3forms.com", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: json
+            })
+            .then(async (response) => {
+                if (response.status == 200) {
+                    alert("Дякуємо! Замовлення успішно оформлено.");
+                    closeModal();
+                    form.reset(); // Очищаємо форму
+                    updateSizes("Не вказано"); // Скидаємо розміри
+                } else {
+                    let res = await response.json();
+                    alert("Помилка: " + (res.message || "Не вдалося відправити"));
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                alert("Щось пішло не так. Спробуйте пізніше.");
+            })
+            .then(() => {
+                submitButton.textContent = "Підтвердити замовлення";
+                submitButton.disabled = false;
+            });
         });
     }
 
-    // Слідкуємо за зміною значення в прихованому полі
-    const observer = new MutationObserver(updateSizes);
-    observer.observe(productInput, { attributes: true, attributeFilter: ['value'] });
+    // Первинне налаштування розмірів
+    updateSizes("Не вказано");
 
-    updateSizes();
-
-    // 3. Асинхронна відправка форми на GitHub Pages через Web3Forms
-    form.addEventListener("submit", function (e) {
-        e.preventDefault(); // Зупиняємо перезавантаження сторінки
-
-        const formData = new FormData(form);
-        const object = Object.fromEntries(formData);
-        const json = JSON.stringify(object);
-
-        const submitButton = form.querySelector(".btn-submit");
-        submitButton.textContent = "Відправка...";
-        submitButton.disabled = true;
-
-        fetch("https://web3forms.com", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: json
-        })
-        .then(async (response) => {
-            let res = await response.json();
-            if (response.status == 200) {
-                alert("Дякуємо! Замовлення успішно оформлено.");
-                form.reset(); // Очищаємо полях форми
-                updateSizes(); // Скидаємо розміри до початкових
-            } else {
-                alert("Помилка: " + res.message);
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-            alert("Щось пішло не так. Спробуйте пізніше.");
-        })
-        .then(() => {
-            submitButton.textContent = "Підтвердити замовлення";
-            submitButton.disabled = false;
-        });
-    });
+    // Автоматичний перехід до товарів через 2 секунди
+    var productsSection = document.getElementById("products");
+    if (productsSection) {
+        setTimeout(function() {
+            productsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 2000);
+    }
 });
 </script>
 </body>
 </html>
+
 
 
 
