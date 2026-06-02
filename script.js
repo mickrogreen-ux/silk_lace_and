@@ -6,7 +6,7 @@ const productSizes = {
     "жіночий халат міді з рукавом кімоно": ["42", "44", "46", "48", "50", "52", "54", "56", "58", "60", "62", "64", "66", "68"]
 };
 
-// Змінні для керування станом лайтбоксу (збільшення фото)
+// Змінні для керування станом лайтбоксу (збільшення photo)
 let currentLightboxImages = [];
 let currentLightboxIndex = 0;
 
@@ -55,10 +55,11 @@ function openModal(button) {
     // Запускаємо генерацію правильних розмірів для цього товару
     updateSizes(detectedName);
 
-    // Відображаємо модальне вікно
+    // Відображаємо модальне вікно та ЗАМОРОЖУЄМО сторінку, щоб вона не плавала
     const modal = document.getElementById("orderModal");
     if (modal) {
         modal.style.display = "flex";
+        document.body.style.overflow = "hidden"; 
     }
 }
 
@@ -67,6 +68,7 @@ function closeModal() {
     const modal = document.getElementById("orderModal");
     if (modal) {
         modal.style.display = "none";
+        document.body.style.overflow = ""; // Повертаємо прокрутку
     }
 }
 
@@ -108,6 +110,7 @@ function openLightbox(clickedImage) {
     if (lightbox && lightboxImg) {
         lightboxImg.src = currentLightboxImages[currentLightboxIndex];
         lightbox.style.display = "flex";
+        document.body.style.overflow = "hidden"; // ЗАМОРОЖУЄМО тло на смартфонах
     }
 }
 
@@ -130,10 +133,11 @@ function closeLightbox() {
     const lightbox = document.getElementById("lightboxModal");
     if (lightbox) {
         lightbox.style.display = "none";
+        document.body.style.overflow = ""; // Звільняємо прокрутку сторінки
     }
 }
 
-// Кліки на затемнений фон для закриття вікон
+// Кліки на затемнений фон для закриття вікон (супер-зручно для пальців на мобільних)
 window.addEventListener("click", function(event) {
     const orderModal = document.getElementById("orderModal");
     const lightboxModal = document.getElementById("lightboxModal");
@@ -142,7 +146,7 @@ window.addEventListener("click", function(event) {
     if (event.target === lightboxModal) closeLightbox();
 });
 
-// Керування лайтбоксом за допомогою клавіатури (ESC та стрілочки)
+// Керування лайтбоксом за допомогою клавіатури (для ноутбуків та ПК)
 window.addEventListener("keydown", function(event) {
     const lightboxModal = document.getElementById("lightboxModal");
     if (lightboxModal && lightboxModal.style.display === "flex") {
@@ -168,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             const formData = new FormData(form);
-            const response = await fetch("https://api.web3forms.com/submit", {
+            const response = await fetch("https://web3forms.com", {
                 method: "POST",
                 body: formData
             });
@@ -193,15 +197,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
-// Автоматичний скрол до товарів через 2 секунди після завантаження
-window.addEventListener("DOMContentLoaded", function() {
-    setTimeout(function() {
-        const productsSection = document.getElementById("products");
-        if (productsSection) {
-            productsSection.scrollIntoView({ behavior: "smooth" });
-        }
-    }, 2000); // 2000 мілісекунд = 2 секунди
-});
+
 
 
 
