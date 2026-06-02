@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Silk_Lace_and | Елегантний домашній одяг</title>
+    <title>Silk & Lace | Стильний домашній одяг</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -56,7 +56,7 @@
                     <h3>Шовковий комплект нічна сорочка з халатом</h3>
                     <p>Артикул: Кч928н | Матеріал: Штучний шовк | Склад: 20% шовк, 20% віскоза, 60% поліестер | Колір: Чорний | Розміри: 42-60</p>
                     <span class="price">1830грн</span>
-                   <button class="btn-buy" onclick="openModal(this)">Купити</button>
+                    <button class="btn-buy" onclick="openModal(this)">Купити</button>
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@
                     <h3>Шовкова піжама принтована з шортами</h3>
                     <p>Артикул: П499 | Матеріал: Штучний шовк | Склад: 20% шовк, 20% віскоза, 60% поліестер | Колір: Бежевий | Розміри: 42-68</p>
                     <span class="price">1300грн</span>
-                   <button class="btn-buy" onclick="openModal(this)">Купити</button>
+                    <button class="btn-buy" onclick="openModal(this)">Купити</button>
                 </div>
             </div>
         </div>
@@ -130,7 +130,6 @@
         </div>
 
     </section>
-
     <!-- Секція 3: Про нас та контакти -->
     <section id="about" class="info-section">
         <div class="about-info">
@@ -144,188 +143,55 @@
         </div>
     </section>
 
-  <!-- Модальне вікно замовлення -->
-<!-- Модальне вікно замовлення -->
-<div id="orderModal" class="modal" style="display: none;">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <h2>Оформлення замовлення</h2>
-        
-        <form id="orderForm">
-            <!-- Секретний ключ Web3Forms -->
-            <input type="hidden" name="access_key" value="d002a220-0d04-414d-842f-eb1abf51b2e6">
-            <input type="hidden" name="subject" value="Нове замовлення Silk_Lace_and">
-            <input type="hidden" name="from_name" value="Магазин Silk_Lace_and">
+    <!-- Модальне вікно замовлення -->
+    <div id="orderModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Оформлення замовлення</h2>
             
-            <!-- Автоматичне поле для назви товару -->
-            <input type="hidden" id="productNameInput" name="Замовлений товар" value="Не вказано">
+            <form id="orderForm">
+                <!-- Секретний ключ Web3Forms -->
+                <input type="hidden" name="access_key" value="d002a220-0d04-414d-842f-eb1abf51b2e6">
+                <input type="hidden" name="subject" value="Нове замовлення Silk_Lace_and">
+                <input type="hidden" name="from_name" value="Магазин Silk_Lace_and">
+                
+                <!-- Автоматичне поле для назви товару -->
+                <input type="hidden" id="productNameInput" name="Замовлений товар" value="Не вказано">
 
-            <!-- Дані покупця -->
-            <input type="text" name="first_name" placeholder="Ім'я" required>
-            <input type="text" name="last_name" placeholder="Прізвище" required>
-            <input type="tel" name="phone" placeholder="Номер телефону" required>
-            <input type="text" name="city" placeholder="Місто" required>
-            <input type="text" name="nova_poshta" placeholder="Відділення Нової Пошти" required>
+                <!-- Дані покупця -->
+                <input type="text" name="first_name" placeholder="Ім'я" required>
+                <input type="text" name="last_name" placeholder="Прізвище" required>
+                <input type="tel" name="phone" placeholder="Номер телефону" required>
+                <input type="text" name="city" placeholder="Місто" required>
+                <input type="text" name="nova_poshta" placeholder="Відділення Нової Пошти" required>
 
-            <!-- Нові поля: Розмір та Кількість -->
-            <select name="size" id="sizeSelect" required>
-                <option value="" disabled selected>Оберіть розмір</option>
-            </select>
+                <!-- Нові поля: Розмір та Кількість -->
+                <select name="size" id="sizeSelect" required>
+                    <option value="" disabled selected>Оберіть розмір</option>
+                </select>
 
-            <input type="number" name="quantity" placeholder="Кількість (шт.)" min="1" value="1" required>
+                <input type="number" name="quantity" placeholder="Кількість (шт.)" min="1" value="1" required>
 
-            <button type="submit" class="btn-submit">Підтвердити замовлення</button>
-        </form>
+                <button type="submit" class="btn-submit">Підтвердити замовлення</button>
+            </form>
+        </div>
     </div>
-</div>
 
-<!-- Лайтбокс -->
-<div id="lightboxModal" class="lightbox" style="display: none;">
-    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-    <button class="lightbox-btn lightbox-prev" onclick="lightboxNavigate(-1)">❮</button>
-    <div class="lightbox-content-wrapper">
-        <img id="lightboxImg" src="" alt="Збільшене фото">
+    <!-- Лайтбокс -->
+    <div id="lightboxModal" class="lightbox" style="display: none;">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <button class="lightbox-btn lightbox-prev" onclick="lightboxNavigate(-1)">❮</button>
+        <div class="lightbox-content-wrapper">
+            <img id="lightboxImg" src="" alt="Збільшене фото">
+        </div>
+        <button class="lightbox-btn lightbox-next" onclick="lightboxNavigate(1)">❯</button>
     </div>
-    <button class="lightbox-btn lightbox-next" onclick="lightboxNavigate(1)">❯</button>
-</div>
 
-<script>
-// 1. Словник товарів та їхніх розмірів
-const productSizes = {
-    "Шовкова піжама": ["XS", "S", "M", "L"],
-    "Мереживний халат": ["S/M", "L/XL"],
-    "Трусики Silk": ["S", "M", "L"],
-    "Не вказано": ["Універсальний"]
-};
-
-// Функція оновлення випадаючого списку розмірів
-function updateSizes(productName) {
-    const sizeSelect = document.getElementById("sizeSelect");
-    if (!sizeSelect) return;
-
-    sizeSelect.innerHTML = '<option value="" disabled selected>Оберіть розмір</option>';
-    const sizes = productSizes[productName] || ["XS", "S", "M", "L", "XL"];
-
-    sizes.forEach(size => {
-        const option = document.createElement("option");
-        option.value = size;
-        option.textContent = size;
-        sizeSelect.appendChild(option);
-    });
-}
-
-// 2. Функція ПРИМУСОВОГО відкриття модального вікна та збору назви товару
-function openModal(button) {
-    let detectedName = "Не вказано";
-
-    try {
-        if (button) {
-            // Шукаємо картку товару за класом або структурою
-            var card = button.closest('.product-gallery') || button.parentElement;
-            if (card) {
-                var h3 = card.querySelector('h3');
-                if (h3) {
-                    detectedName = h3.innerText.trim();
-                }
-            }
-        }
-    } catch (e) {
-        console.warn("Не вдалося зчитати назву товару:", e);
-    }
-
-    // Записуємо назву в приховане поле
-    var input = document.getElementById('productNameInput');
-    if (input) {
-        input.value = detectedName;
-    }
-
-    // Оновлюємо розміри під цей товар
-    updateSizes(detectedName);
-
-    // Відображаємо вікно
-    var modal = document.getElementById("orderModal");
-    if (modal) {
-        modal.style.display = "flex";
-    }
-}
-
-// 3. Функція закриття модального вікна
-function closeModal() {
-    var modal = document.getElementById("orderModal");
-    if (modal) {
-        modal.style.display = "none";
-    }
-}
-
-// 4. Закриття при кліку на темне тло
-window.onclick = function(event) {
-    var modal = document.getElementById("orderModal");
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-};
-
-// 5. Ініціалізація відправки форми та скролу
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("orderForm");
-
-    if (form) {
-        form.addEventListener("submit", function (e) {
-            e.preventDefault(); // Блокуємо перезавантаження сторінки
-
-            const formData = new FormData(form);
-            const object = Object.fromEntries(formData);
-            const json = JSON.stringify(object);
-
-            const submitButton = form.querySelector(".btn-submit");
-            submitButton.textContent = "Відправка...";
-            submitButton.disabled = true;
-
-            // ІСПРАВЛЕНО: Правильна URL-адреса для Web3Forms API
-            fetch("https://api.web3forms.com/submit", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: json
-            })
-            .then(async (response) => {
-                if (response.status == 200) {
-                    alert("Дякуємо! Замовлення успішно оформлено.");
-                    closeModal();
-                    form.reset(); // Очищаємо форму
-                    updateSizes("Не вказано"); // Скидаємо розміри
-                } else {
-                    let res = await response.json();
-                    alert("Помилка: " + (res.message || "Не вдалося відправити"));
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-                alert("Щось пішло не так. Спробуйте пізніше.");
-            })
-            .then(() => {
-                submitButton.textContent = "Підтвердити замовлення";
-                submitButton.disabled = false;
-            });
-        });
-    }
-
-    // Первинне налаштування розмірів
-    updateSizes("Не вказано");
-
-    // Автоматичний перехід до товарів через 2 секунди
-    var productsSection = document.getElementById("products");
-    if (productsSection) {
-        setTimeout(function() {
-            productsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 2000);
-    }
-});
-</script>
+    <!-- Підключення скрипту -->
+    <script src="script.js"></script>
 </body>
 </html>
+
 
 
 

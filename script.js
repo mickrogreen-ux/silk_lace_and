@@ -1,20 +1,27 @@
-// 1. Словник товарів та їхніх розмірів (змініть під свої товари)
+// Словник розмірів товарів (усі назви переведені у нижній регістр для точного збігу)
 const productSizes = {
-    "Шовкова піжама": ["XS", "S", "M", "L"],
-    "Мереживний халат": ["S/M", "L/XL"],
-    "Трусики Silk": ["S", "M", "L"],
-    "Не вказано": ["Універсальний"] // Варіант за замовчуванням
+    "шовковий комплект нічна сорочка з халатом": ["42", "44", "46", "48", "50", "52", "54", "56", "58", "60"],
+    "нічна сорочка трикотажна з мереживом": ["XS", "S", "M", "L", "XL", "2XL"],
+    "шовкова піжама принтована з шортами": ["42", "44", "46", "48", "50", "52", "54", "56", "58", "60", "62", "64", "66", "68"],
+    "жіночий халат міді з рукавом кімоно": ["42", "44", "46", "48", "50", "52", "54", "56", "58", "60", "62", "64", "66", "68"]
 };
 
-// Функція оновлення випадаючого списку розмірів
+// Змінні для керування станом лайтбоксу (збільшення фото)
+let currentLightboxImages = [];
+let currentLightboxIndex = 0;
+
+// Оновлення списку розмірів у формі
 function updateSizes(productName) {
     const sizeSelect = document.getElementById("sizeSelect");
     if (!sizeSelect) return;
 
+    // Очищаємо старі розміри перед додаванням нових
     sizeSelect.innerHTML = '<option value="" disabled selected>Оберіть розмір</option>';
-
-    // Беремо розміри для товару або стандартний набір, якщо товару немає в списку
-    const sizes = productSizes[productName] || ["XS", "S", "M", "L", "XL"];
+    
+    const cleanName = productName.trim().toLowerCase();
+    
+    // Якщо товар знайдено в базі — беремо його масив розмірів, якщо ні — ставимо стандартні
+    const sizes = productSizes[cleanName] || ["XS", "S", "M", "L", "XL"];
 
     sizes.forEach(size => {
         const option = document.createElement("option");
@@ -24,115 +31,177 @@ function updateSizes(productName) {
     });
 }
 
-// 2. Відкриття модального вікна та збір імені товару
+// Відкриття модального вікна замовлення
 function openModal(button) {
-    try {
-        if (button && button.closest) {
-            var card = button.closest('.product-gallery');
-            if (card) {
-                var h3 = card.querySelector('h3');
-                var input = document.getElementById('productNameInput');
-                if (h3 && input) {
-                    var currentProductName = h3.innerText.trim();
-                    input.value = currentProductName;
-                    
-                    // Одразу оновлюємо розміри під конкретний товар при відкритті
-                    updateSizes(currentProductName);
-                }
-            }
+    let detectedName = "Не вказано";
+    
+    // Шукаємо батьківську картку товару (.card)
+    const card = button.closest(".card");
+
+    if (card) {
+        // Витягуємо назву товару із заголовка h3 всередині текстового блоку
+        const title = card.querySelector(".card-content-overlay h3");
+        if (title) {
+            detectedName = title.textContent.trim();
         }
-    } catch (e) {
-        console.warn("Помилка запису назви товару:", e);
     }
 
-    var modal = document.getElementById("orderModal");
+    // Записуємо назву у приховане поле форми Web3Forms
+    const productInput = document.getElementById("productNameInput");
+    if (productInput) {
+        productInput.value = detectedName;
+    }
+
+    // Запускаємо генерацію правильних розмірів для цього товару
+    updateSizes(detectedName);
+
+    // Відображаємо модальне вікно
+    const modal = document.getElementById("orderModal");
     if (modal) {
         modal.style.display = "flex";
     }
 }
 
-// 3. Закриття модального вікна
+// Закриття модального вікна замовлення
 function closeModal() {
-    var modal = document.getElementById("orderModal");
+    const modal = document.getElementById("orderModal");
     if (modal) {
         modal.style.display = "none";
     }
 }
 
-// 4. Закриття при кліку на темне тло навколо форми
-window.onclick = function(event) {
-    var modal = document.getElementById("orderModal");
-    if (event.target == modal) {
-        modal.style.display = "none";
+// Логіка звичайного слайдера перемикання фото в картці
+function changeSlide(button, direction) {
+    const gallery = button.closest(".product-gallery");
+    if (!gallery) return;
+
+    const slides = gallery.querySelectorAll(".slide");
+    let activeIndex = 0;
+
+    slides.forEach((slide, index) => {
+        if (slide.classList.contains("active")) {
+            activeIndex = index;
+        }
+    });
+
+    slides[activeIndex].classList.remove("active");
+
+    let newIndex = activeIndex + direction;
+    if (newIndex >= slides.length) newIndex = 0;
+    if (newIndex < 0) newIndex = slides.length - 1;
+
+    slides[newIndex].classList.add("active");
+}
+
+// ЛАЙТБОКС: Відкриття збільшеного фото всередині сайту
+function openLightbox(clickedImage) {
+    const gallery = clickedImage.closest(".product-gallery");
+    if (!gallery) return;
+
+    const slides = gallery.querySelectorAll(".slide");
+    currentLightboxImages = Array.from(slides).map(img => img.src);
+    currentLightboxIndex = currentLightboxImages.indexOf(clickedImage.src);
+
+    const lightbox = document.getElementById("lightboxModal");
+    const lightboxImg = document.getElementById("lightboxImg");
+
+    if (lightbox && lightboxImg) {
+        lightboxImg.src = currentLightboxImages[currentLightboxIndex];
+        lightbox.style.display = "flex";
     }
-};
+}
 
-// 5. Безпечне фонове відправлення через Fetch API та ініціалізація
-document.addEventListener("DOMContentLoaded", function() {
-    var form = document.getElementById("orderForm");
-    
-    if (form) {
-        form.addEventListener("submit", function(event) {
-            event.preventDefault(); // Блокуємо перезавантаження сторінки
+// Перемикання фото всередині лайтбоксу (вліво / вправо)
+function lightboxNavigate(direction) {
+    if (currentLightboxImages.length === 0) return;
 
-            var formData = new FormData(form);
+    currentLightboxIndex += direction;
+    if (currentLightboxIndex >= currentLightboxImages.length) currentLightboxIndex = 0;
+    if (currentLightboxIndex < 0) currentLightboxIndex = currentLightboxImages.length - 1;
 
-            fetch("https://api.web3forms.com/submit", {
-                method: "POST",
-                body: formData
-            })
-            .then(function(response) {
-                if (response.ok) {
-                    alert("Дякуємо! Ваше замовлення успішно прийнято.");
-                    closeModal();
-                    form.reset(); // Очищуємо поля форми
-                    updateSizes("Не вказано"); // Скидаємо розміри
-                } else {
-                    alert("Сервер Web3Forms відхилив запит. Перевірте статус ключа.");
-                }
-            })
-            .catch(function(error) {
-                alert("Сталася помилка відправки. На GitHub Pages все працюватиме стабільно.");
-                console.error("Помилка:", error);
-            });
-        });
+    const lightboxImg = document.getElementById("lightboxImg");
+    if (lightboxImg) {
+        lightboxImg.src = currentLightboxImages[currentLightboxIndex];
     }
+}
 
-    // Первинне налаштування розмірів за замовчуванням
-    updateSizes("Не вказано");
+// Закриття лайтбоксу
+function closeLightbox() {
+    const lightbox = document.getElementById("lightboxModal");
+    if (lightbox) {
+        lightbox.style.display = "none";
+    }
+}
 
-    // --- Автоматичний перехід до товарів через 2 секунди ---
-    var productsSection = document.getElementById("products");
-    if (productsSection) {
-        setTimeout(function() {
-            productsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 2000);
+// Кліки на затемнений фон для закриття вікон
+window.addEventListener("click", function(event) {
+    const orderModal = document.getElementById("orderModal");
+    const lightboxModal = document.getElementById("lightboxModal");
+
+    if (event.target === orderModal) closeModal();
+    if (event.target === lightboxModal) closeLightbox();
+});
+
+// Керування лайтбоксом за допомогою клавіатури (ESC та стрілочки)
+window.addEventListener("keydown", function(event) {
+    const lightboxModal = document.getElementById("lightboxModal");
+    if (lightboxModal && lightboxModal.style.display === "flex") {
+        if (event.key === "ArrowLeft") lightboxNavigate(-1);
+        if (event.key === "ArrowRight") lightboxNavigate(1);
+        if (event.key === "Escape") closeLightbox();
     }
 });
 
-// 6. Функція слайдера картинок (горталка)
-function changeSlide(button, direction) {
-    var gallery = button.closest('.product-gallery');
-    if (!gallery) return;
+// Обробка відправки форми на сервери Web3Forms
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("orderForm");
+    if (!form) return;
 
-    var slides = gallery.querySelectorAll('img.slide');
-    if (slides.length <= 1) return; 
+    form.addEventListener("submit", async function(e) {
+        e.preventDefault();
+        const submitButton = form.querySelector(".btn-submit");
 
-    var activeIndex = Array.from(slides).findIndex(function(slide) {
-        return slide.classList.contains('active');
+        try {
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = "Відправка...";
+            }
+
+            const formData = new FormData(form);
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                alert("Дякуємо! Ваше замовлення успішно прийнято.");
+                form.reset();
+                closeModal();
+            } else {
+                alert(result.message || "Помилка відправки форми");
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Помилка мережі. Спробуйте пізніше.");
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = "Підтвердити замовлення";
+            }
+        }
     });
-    if (activeIndex === -1) activeIndex = 0;
+});
+// Автоматичний скрол до товарів через 2 секунди після завантаження
+window.addEventListener("DOMContentLoaded", function() {
+    setTimeout(function() {
+        const productsSection = document.getElementById("products");
+        if (productsSection) {
+            productsSection.scrollIntoView({ behavior: "smooth" });
+        }
+    }, 2000); // 2000 мілісекунд = 2 секунди
+});
 
-    slides[activeIndex].classList.remove('active');
-
-    var newIndex = activeIndex + direction;
-    if (newIndex >= slides.length) {
-        newIndex = 0;
-    } else if (newIndex < 0) {
-        newIndex = slides.length - 1;
-    }
-
-    slides[newIndex].classList.add('active');
-}
 
 
