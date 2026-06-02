@@ -486,5 +486,42 @@ img {
     height: auto;
     display: block;
 }
+/* Базові налаштування головної секції для комп'ютерів */
+.hero-section {
+    position: relative;
+    background-image: url('ваше-головне-фото.jpg'); /* Перевірте, чи вказано тут шлях до фото */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh; /* Секція займає всю висоту екрану */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Адаптація головної сторінки під мобільні телефони (менше 768px) */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 60vh !important; /* Зменшуємо висоту блоку на телефонах, щоб фото не розтягувалося вниз */
+        background-position: center center !important; /* Центруємо картинку, фокусуючись на головному об'єкті */
+        background-size: cover !important; /* Картинка масштабується під розмір екрану телефону */
+    }
+
+    /* Налаштування тексту поверх фото для мобільних (якщо додасте його в HTML) */
+    .hero-content h1 {
+        font-size: 24px !important;
+        margin-bottom: 10px;
+    }
+
+    .hero-content .subtitle {
+        font-size: 16px !important;
+    }
+
+    .btn-explore {
+        padding: 10px 25px !important;
+        font-size: 14px !important;
+    }
+}
 
 
