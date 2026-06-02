@@ -14,6 +14,13 @@ body {
     scroll-behavior: smooth;
 }
 
+/* Универсальный адаптив для тегов картинок */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* ==========================================================================
    2. ШАПКА САЙТУ (НАВІГАЦІЯ)
    ========================================================================== */
@@ -61,7 +68,7 @@ body {
     position: relative;
     height: 100vh;
     background-image: url('bg.jpg');
-    background-position: center;
+    background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
@@ -108,7 +115,6 @@ body {
     font-size: 12px;
     letter-spacing: 2px;
     transition: 0.4s;
-    /* Опускаємо кнопку нижче від тексту */
     margin-top: 80px; 
 }
 
@@ -156,7 +162,6 @@ body {
     background-size: cover;
 }
 
-/* Исправленный псевдоэлемент затемнения фона секции */
 .products-section::before {
     content: '';
     position: absolute;
@@ -168,12 +173,11 @@ body {
     z-index: 1;
 }
 
-/* Абсолютно прозрачная карточка без серого хвоста снизу */
 .products-section .card {
     position: relative;
     z-index: 2;
     width: 320px !important;
-    height: 490px !important; /* Оптимальная высота всей карточки */
+    height: 490px !important; 
     border-radius: 12px !important;
     overflow: hidden !important;
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2) !important;
@@ -184,7 +188,6 @@ body {
     flex-direction: column !important;
 }
 
-/* Галерея на всю высоту карты */
 .product-gallery {
     position: relative;
     width: 100% !important;
@@ -200,7 +203,6 @@ body {
     z-index: 1;
 }
 
-/* Фотографии товара */
 .product-gallery img.slide {
     width: 100% !important;
     height: 100% !important;
@@ -218,14 +220,12 @@ body {
     visibility: visible !important;
 }
 
-/* Блок контента наложен прямо поверх нижней части фотографии */
 .card-content-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     padding: 40px 24px 24px 24px;
-    /* Элегантное премиальное затемнение для идеального чтения текста на фото */
     background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 65%, rgba(0,0,0,0) 100%);
     z-index: 3;
     display: flex;
@@ -234,7 +234,6 @@ body {
     box-sizing: border-box;
 }
 
-/* Текст карточки на фотографии */
 .products-section .card h3 {
     font-family: 'Cormorant Garamond', serif;
     color: #fff !important;
@@ -254,7 +253,6 @@ body {
     padding: 0 !important;
 }
 
-/* Новая цена товара поверх фото */
 .products-section .card .price {
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
@@ -265,7 +263,6 @@ body {
     display: block;
 }
 
-/* Кнопка "Купить" поверх фотографии */
 .products-section .card .btn-buy {
     width: 100% !important;
     margin: 0 auto !important;
@@ -288,7 +285,6 @@ body {
     color: #000 !important;
 }
 
-/* Премиальные аккуратные стрелочки, поднятые чуть выше текста */
 .slider-btn {
     position: absolute;
     top: 40%;
@@ -320,15 +316,22 @@ body {
    5. ТРЕТЯ СЕКЦІЯ (ІНФО ТА КОНТАКТИ)
    ========================================================================== */
 .info-section {
-    padding: 100px 50px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 100px 50px;
+    max-width: 1200px;
+    margin: 0 auto;
     background: #000;
-    border-top: 1px solid #222;
 }
 
-.about-info, .contacts-info {
-    max-width: 400px;
+.about-info {
+    flex: 2;
+}
+
+.contacts-info {
+    flex: 1;
+    min-width: 250px;
 }
 
 .info-section h2 {
@@ -414,27 +417,26 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 .lightboxImg {
     max-width: 90%;
     max-height: 80vh;
     object-fit: contain;
 }
-/* Фікс для однакового відображення списку розмірів на смартфонах та ПК */
+
 #sizeSelect {
-    background-color: #ffffff !important; /* Чітко задаємо білий фон для самого поля */
-    color: #000000 !important;            /* Чітко задаємо чорний колір тексту */
-    -webkit-appearance: none;             /* Скидаємо стандартні системні стилі iOS/Safari */
-    -moz-appearance: none;                /* Скидаємо стандартні системні стилі Firefox */
-    appearance: none;                     /* Скидаємо стандартні стилі для інших браузерів */
+    background-color: #ffffff !important; 
+    color: #000000 !important;            
+    -webkit-appearance: none;             
+    -moz-appearance: none;                
+    appearance: none;                     
 }
 
-/* Окремо прописуємо стилі для варіантів вибору всередині меню */
 #sizeSelect option {
-    background-color: #ffffff !important; /* Білий фон для кожного рядка з розміром */
-    color: #000000 !important;            /* Чорний текст для кожного рядка з розміром */
+    background-color: #ffffff !important; 
+    color: #000000 !important;            
 }
 
-/* Якщо ви скинули стандартну стрілочку через appearance, повертаємо її як красиву картинку (опціонально) */
 #sizeSelect {
     padding-right: 30px;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://w3.org' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
@@ -442,86 +444,7 @@ body {
     background-position: right 10px center;
     background-size: 15px;
 }
-/* Основні стилі для великих екранів (комп'ютерів) */
-.info-section {
-    display: flex;
-    justify-content: space-between;
-    gap: 40px;
-    padding: 60px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
 
-.about-info {
-    flex: 2; /* Блок "Про нас" буде ширшим */
-}
 
-.contacts-info {
-    flex: 1; /* Блок "Контакти" буде вужчим */
-    min-width: 250px;
-}
-
-/* Адаптація під мобільні телефони (екрани менше 768px) */
-@media (max-width: 768px) {
-    .info-section {
-        flex-direction: column; /* Блоки стають один під одного */
-        gap: 30px; /* Зменшуємо відстань між блоками */
-        padding: 40px 15px; /* Зменшуємо внутрішні відступи */
-        text-align: center; /* (Опціонально) Вирівнювання тексту по центру для мобільних */
-    }
-
-    .about-info, .contacts-info {
-        width: 100%; /* Блоки займають всю ширину екрану */
-    }
-}
-.hero-section { /* Замініть .hero-section на клас вашого головного блоку */
-    background-image: url('bg.jpg');
-    background-position: center center; /* Центрує фото */
-    background-repeat: no-repeat; /* Забороняє повторення картинки */
-    background-size: cover; /* Повністю закриває блок, акуратно обрізаючи краї */
-}
-/* Робить усі зображення на сайті адаптивними */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-/* Базові налаштування головної секції для комп'ютерів */
-.hero-section {
-    position: relative;
-    background-image: url('ваше-головне-фото.jpg'); /* Перевірте, чи вказано тут шлях до фото */
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 100vh; /* Секція займає всю висоту екрану */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Адаптація головної сторінки під мобільні телефони (менше 768px) */
-@media (max-width: 768px) {
-    .hero-section {
-        min-height: 60vh !important; /* Зменшуємо висоту блоку на телефонах, щоб фото не розтягувалося вниз */
-        background-position: center center !important; /* Центруємо картинку, фокусуючись на головному об'єкті */
-        background-size: cover !important; /* Картинка масштабується під розмір екрану телефону */
-    }
-
-    /* Налаштування тексту поверх фото для мобільних (якщо додасте його в HTML) */
-    .hero-content h1 {
-        font-size: 24px !important;
-        margin-bottom: 10px;
-    }
-
-    .hero-content .subtitle {
-        font-size: 16px !important;
-    }
-
-    .btn-explore {
-        padding: 10px 25px !important;
-        font-size: 14px !important;
-    }
-}
 
 
