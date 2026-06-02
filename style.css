@@ -12,8 +12,7 @@ body {
     background-color: #000;
     color: #fff;
     scroll-behavior: smooth;
-    /* Жорстке блокування будь-якого плавання сторінки вбік: */
-    overflow-x: hidden; 
+    overflow-x: hidden; /* Забороняє появу горизонтальної прокрутки */
     width: 100%;
 }
 
@@ -77,6 +76,7 @@ img {
     justify-content: center;
     align-items: center;
     text-align: center;
+    overflow: hidden; /* Не дає SVG ламати екран */
 }
 
 .hero-overlay {
@@ -148,7 +148,7 @@ img {
 }
 
 /* ==========================================================================
-   4. ДРУГА СЕКЦІЯ (ТОВАРИ) — Повністю ваші оригінальні розміри
+   4. ДРУГА СЕКЦІЯ (ТОВАРИ)
    ========================================================================== */
 .products-section {
     padding: 100px 50px;
@@ -314,7 +314,7 @@ img {
 .slider-btn.next { right: 15px !important; }
 
 /* ==========================================================================
-   5. ТРЕТЯ СЕКЦІЯ (ІНФО ТА КОНТАКТИ)
+   5. ТРЕТЯ СЕКЦІЯ (ІНФО ТА КОНТАКТИ / ФУТЕР)
    ========================================================================== */
 .info-section {
     display: flex;
@@ -443,7 +443,6 @@ img {
     background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://w3.org' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 10px center;
-
 }
 
 
