@@ -419,3 +419,27 @@ body {
     max-height: 80vh;
     object-fit: contain;
 }
+/* Фікс для однакового відображення списку розмірів на смартфонах та ПК */
+#sizeSelect {
+    background-color: #ffffff !important; /* Чітко задаємо білий фон для самого поля */
+    color: #000000 !important;            /* Чітко задаємо чорний колір тексту */
+    -webkit-appearance: none;             /* Скидаємо стандартні системні стилі iOS/Safari */
+    -moz-appearance: none;                /* Скидаємо стандартні системні стилі Firefox */
+    appearance: none;                     /* Скидаємо стандартні стилі для інших браузерів */
+}
+
+/* Окремо прописуємо стилі для варіантів вибору всередині меню */
+#sizeSelect option {
+    background-color: #ffffff !important; /* Білий фон для кожного рядка з розміром */
+    color: #000000 !important;            /* Чорний текст для кожного рядка з розміром */
+}
+
+/* Якщо ви скинули стандартну стрілочку через appearance, повертаємо її як красиву картинку (опціонально) */
+#sizeSelect {
+    padding-right: 30px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://w3.org' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px;
+}
+
